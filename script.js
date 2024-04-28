@@ -87,10 +87,11 @@ prevBtn.addEventListener('click', ()=>{
 nextBtn.addEventListener('click', ()=>{
     pageNo = pageNo + 1
     
-    if (pageNo <= 10){
+    if (pageNo <= 10 && pageNo > 1){
         getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=${pageNo}&limit=10`)
     }
     else{
+        getData("https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=1&limit=10")
         pageNo = 1
     }
 
