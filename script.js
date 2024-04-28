@@ -97,4 +97,4 @@ nextBtn.addEventListener('click', ()=>{
     pageNumber.innerText = `${pageNo}`
 })
 
-getData("getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=1&limit=10`)")
+getData("https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=1&limit=10")
