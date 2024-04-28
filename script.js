@@ -3,6 +3,9 @@ let filterByDept = document.querySelector("#filter-by-department")
 let filterByGen = document.querySelector("#filter-by-gender")
 let sortBySalary = document.querySelector("#sort-by-salary")
 
+let prevBtn = document.querySelector("#prev-btn")
+let nextBtn = document.querySelector("#nxt-btn")
+
 
 // fetching data from given data base and making it into table format and appendig to the main body
 function showData(arr){
@@ -60,11 +63,23 @@ async function getData(url){
     let res = await fetch(url)
     let data = await res.json()
 
-    console.log(data.data)
     showData(data.data)
 
 }
 
 
+let pageNo = 1;
 
-getData("https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees")
+prevBtn.addEventListener('click', ()=>{
+    pageNo = pageNo - 1
+
+    getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=${pageNo}&limit=10`)
+})
+
+nextBtn.addEventListener('click', ()=>{
+    pageNo = pageNo + 1
+
+    getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=${pageNo}&limit=10`)
+})
+
+getData("getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=${pageNo}&limit=10`)")
