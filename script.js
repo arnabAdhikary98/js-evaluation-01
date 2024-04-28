@@ -5,6 +5,7 @@ let sortBySalary = document.querySelector("#sort-by-salary")
 
 let prevBtn = document.querySelector("#prev-btn")
 let nextBtn = document.querySelector("#nxt-btn")
+let pageNumber = document.querySelector('span')
 
 
 // fetching data from given data base and making it into table format and appendig to the main body
@@ -73,13 +74,27 @@ let pageNo = 1;
 prevBtn.addEventListener('click', ()=>{
     pageNo = pageNo - 1
 
-    getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=${pageNo}&limit=10`)
+    if (pageNo > 0){
+        getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=${pageNo}&limit=10`)
+    }
+    else{
+        pageNo = 1 
+    }
+
+    pageNumber.innerText = `${pageNo}`
 })
 
 nextBtn.addEventListener('click', ()=>{
     pageNo = pageNo + 1
+    
+    if (pageNo <= 10){
+        getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=${pageNo}&limit=10`)
+    }
+    else{
+        pageNo = 1
+    }
 
-    getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=${pageNo}&limit=10`)
+    pageNumber.innerText = `${pageNo}`
 })
 
-getData("getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=${pageNo}&limit=10`)")
+getData("getData(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?page=1&limit=10`)")
